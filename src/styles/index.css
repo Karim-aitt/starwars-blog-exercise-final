@@ -1,3 +1,22 @@
-/* 
-    General Styles
-*/
+.card{
+    width: 18rem;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.scrollmenu{
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.hrDetail{
+    border: 2px solid red;
+    /* width: 90%; */
+}
+
+.peopleDetailSpan{
+    color: red;
+    font-weight: bold;
+    padding: 10px;
+    
+}
