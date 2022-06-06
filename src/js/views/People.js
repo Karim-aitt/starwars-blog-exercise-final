@@ -4,42 +4,63 @@ import {Context} from "../store/appContext.js"
 import {useParams} from "react-router-dom"
 
 function People(){
-
     const {store, actions} = useContext(Context)
-    const [peopleCard , setPeopleCard] = useState()
+    const [carta, setCarta] = useState([])
 
+    console.log(store.people)
+    
+    
+    useEffect(() => 
+    {
+    //    const loquesea = store.people.map((elem, index) => {
+    //     getPeopleData((elem.uid).toString())
 
-    useEffect(() => {
-        if (store.people.results != undefined) {
-            setPeopleCard(
-                store.people.results.map((elem, index) => {
-                    
-                        return (
-                            <Card
-                            key={index}
-                            name={elem.name}
-                            uid={elem.uid}
-                            gender={""}
-                            hairColor={""}
-                            eyeColor={""}
-                            type="people"
-                            
-                            />
-                        );
+    //     console.log(elem.uid)
+    //     console.log(store.peopleData.properties)
+        
+    //     return(
+    //         <Card
+    //             key={elem.uid} 
+    //             name={store.peopleData.name}
+    //         />
+    //     )  
+    //     })
+        function getPersonDetail(uid){
+            return fetch(`https://www.swapi.tech/api/people/${uid}`, {method: "GET"})
 
-                    
-                })
-            );
+				.then(res => 
+				{
+					if(!res.ok) throw Error(res.statusText)
+					return res.json()
+				})
+				.then(data => 
+				{
+					return data
+				})
         }
-    },
-    [store.people]
-);
+
+
+    const auxCartas = []
+    for(const person in store.people){
+        getPersonDetail(person.uid)
+        .then(res => {
+            //mapperPersonData(res)
+        })
+    }
+
+        setCarta(
+            auxCartas
+        )
+        
+
+    }, [store.people])
+
 
     return (
         <div className="container w-75">
             <p className="h1 text-danger my-4">Characters</p>
             <div className="d-flex scrollmenu p-3">
-                {peopleCard}
+                {carta}
             </div>
         </div>
     )

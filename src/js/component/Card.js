@@ -3,8 +3,6 @@ import {Link} from "react-router-dom"
 
 function Card(props){
 
-    const link = "/".concat(props.type, "/", props.uid)
-    
 
     return (
        
@@ -23,7 +21,7 @@ function Card(props){
                     
 
                         <div className="d-flex p-3">
-                            <Link to={link} className="btn btn-outline-primary">Learn more!</Link>
+                            <Link to={""} className="btn btn-outline-primary">Learn more!</Link>
                             <button className="favorito btn btn-outline-warning ms-auto"><i className="far solid fa-heart"></i></button>
                             
                         </div>

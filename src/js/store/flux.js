@@ -1,66 +1,37 @@
+// import {getPeople, getPeopleData } from "../apiFetch"
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			people: {},
-			peopleDetails: {},
+			people: [], //esto es un objeto con un array con objetos de cada personaje
+			peopleData: {}, //esto es un objeto con las key:values de los datos
 			planets: {},
-			planetsDetails: {}
+			planetsData: {}
 		},
 		actions: {
-			getPeople: () => {
-				fetch("https://www.swapi.tech/api/people?page=1&limit=100", { method: "GET" })
-					.then((response) => {
-						if (!response.ok) {
-							throw Error(response.statusText);
-						}
-						return response.json();
-					})
-					.then((data) => {
-						
-						setStore({ people: data });
-					});
+			getPeople: () =>
+			{
+				fetch(`https://www.swapi.tech/api/people?page=1&limit=10`, {method: "GET"})
+
+				.then(res => 
+				{
+					if(!res.ok) throw Error(res.statusText)
+					return res.json()
+				})
+				.then(data => 
+				{
+					setStore({people: data.results})
+				})
 			},
-			getPeopleDetails: uid => {
-				fetch("https://www.swapi.tech/api/people/".concat(uid), { method: "GET" })
-					.then((response) => {
-						if (!response.ok) {
-							throw Error(response.statusText);
-						}
-						return response.json();
-					})
-					.then((data) => {
-						
-						setStore({ peopleDetails: data });
-					});
-			},
-			getPlanets: () => {
-				fetch("https://www.swapi.tech/api/planets?page=1&limit=100", { method: "GET" })
-					.then((response) => {
-						if (!response.ok) {
-							throw Error(response.statusText);
-						}
-						return response.json();
-					})
-					.then((data) => {
-						setStore({ planets: data });
-					});
-			},
-			getPlanetsDetails: uid => {
-				fetch("https://www.swapi.tech/api/planets/".concat(uid), { method: "GET" })
-					.then((response) => {
-						if (!response.ok) {
-							throw Error(response.statusText);
-						}
-						return response.json();
-					})
-					.then((data) => {
-						setStore({ planetsDetails: data });
-					});
-			},
+			setPeopleData: (uid) =>
+			{
+				
+			}
+		}
 		}
 	};
-};
+
+
 
 
 
