@@ -1,66 +1,35 @@
 import React, {useState, useContext, useEffect} from "react"
 import Card from "../component/Card"
 import {Context} from "../store/appContext.js"
-import {useParams} from "react-router-dom"
+
 
 function People(){
     const {store, actions} = useContext(Context)
-    const [carta, setCarta] = useState([])
 
-    console.log(store.people)
-    
-    
-    useEffect(() => 
-    {
-    //    const loquesea = store.people.map((elem, index) => {
-    //     getPeopleData((elem.uid).toString())
-
-    //     console.log(elem.uid)
-    //     console.log(store.peopleData.properties)
-        
-    //     return(
-    //         <Card
-    //             key={elem.uid} 
-    //             name={store.peopleData.name}
-    //         />
-    //     )  
-    //     })
-        function getPersonDetail(uid){
-            return fetch(`https://www.swapi.tech/api/people/${uid}`, {method: "GET"})
-
-				.then(res => 
-				{
-					if(!res.ok) throw Error(res.statusText)
-					return res.json()
-				})
-				.then(data => 
-				{
-					return data
-				})
-        }
-
-
-    const auxCartas = []
-    for(const person in store.people){
-        getPersonDetail(person.uid)
-        .then(res => {
-            //mapperPersonData(res)
-        })
-    }
-
-        setCarta(
-            auxCartas
-        )
-        
-
-    }, [store.people])
 
 
     return (
-        <div className="container w-75">
-            <p className="h1 text-danger my-4">Characters</p>
+        <div className="container w-75 mt-3 containerPrinc">
+            <p className="h1 text-danger text-center my-4">Characters</p>
             <div className="d-flex scrollmenu p-3">
-                {carta}
+                {
+                    store.peopleData.length >0 ? store.peopleData.map((elem, i) => {
+                        return(
+                            <Card
+                                key={i}
+                                name={elem.properties.name}
+                                gender={elem.properties.gender}
+                                hairColor={elem.properties.hair_color}
+                                eyeColor={elem.properties.eye_color}
+                                uid={elem.uid}
+                                type={"people/"}
+                            />
+                        )  
+                    }) : 
+                    <div className="spinner-border text-danger m-auto" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                }
             </div>
         </div>
     )

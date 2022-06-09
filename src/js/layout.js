@@ -5,7 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./views/home";
 import { People } from "./views/People"
 import { PeopleDetailsComp } from "./views/people-details";
-import { PlanetsDetails } from "./views/planets-details";
+import { PlanetsDetailsComp } from "./views/planets-details";
 import { Planets } from "./views/Planets"
 import injectContext from "./store/appContext";
 
@@ -21,7 +21,7 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div>
+		<div className="divLayout">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
@@ -32,7 +32,7 @@ const Layout = () => {
 						<Route exact path="/people/:id" element={<PeopleDetailsComp />} />
 						
 						{/* <Route exact path="/planets" element={<Planets />} /> */}
-						<Route exact path="/planets/:id" element={<PlanetsDetails />} />
+						<Route exact path="/planets/:id" element={<PlanetsDetailsComp />} />
 						
 						<Route path="*" element={<h1>Not found</h1>} />	
 					</Routes>
