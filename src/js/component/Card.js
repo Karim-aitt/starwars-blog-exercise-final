@@ -29,7 +29,7 @@ function Card(props){
                 <div className="row row-cols-1 row-cols-md-3 g-4">
                     <div className="col">
                         <div className="card h-100">
-                        <img src={props.type === "people/" ? `https://starwars-visualguide.com/assets/img/characters/${props.uid}.jpg` : props.type === "planets/" ? `https://starwars-visualguide.com/assets/img/planets/${props.uid}.jpg` : "vehicles"} className="card-img-top" alt="img_card" />
+                        <img src={props.type === "people/" ? `https://starwars-visualguide.com/assets/img/characters/${props.uid}.jpg` : props.type === "planets/" ? `https://starwars-visualguide.com/assets/img/planets/${props.uid}.jpg` : "vehicles"} className="card-img-top img-fluid" alt="img_card" />
                         <div className="card-body">
                             <h5 className="card-title">{props.name}</h5>
 
